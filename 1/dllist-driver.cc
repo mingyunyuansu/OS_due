@@ -28,6 +28,6 @@ void removeN(int N, DLList * list) {
             break;
         }
         list->Remove(&t);
-        printf("item is int: %d, key: %d\n",t t);
+        printf("item is int: %d, key: %d\n",t, t);
     }
 }
