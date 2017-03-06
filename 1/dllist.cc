@@ -1,4 +1,5 @@
 #include "dllist.h"
+const int NULL = 0;
 
 DLLElement:: DLLElement(void *itemPtr, int sortKey){
 	key = sortKey;
@@ -12,8 +13,9 @@ DLList:: DLList(){
 }
 
 DLList:: ~DLList() {
+	int t;
 	while(!IsEmpty()) {
-		(void) Remove();
+		Remove(&t);
 	}
 }
 
@@ -57,7 +59,7 @@ DLList:: Remove(int *keyPtr) {
 		return NULL;
 
 	void *first_item;
-	DLLElement * element = fist;//先把当前first保存
+	DLLElement * element = first;//先把当前first保存
 
 	*keyPtr = first->key;//当前first的key值
 	first_item = first->item;//要返回的当前first的item
@@ -74,7 +76,7 @@ DLList:: Remove(int *keyPtr) {
 
 void
 DLList:: SortedInsert(void *item, int sortKey) {
-	DLLElement *element = new DLList(item, sortKey);
+	DLLElement *element = new DLLElement(item, sortKey);
 	if (IsEmpty()) {
 		first = last = element;
 	}
@@ -82,6 +84,13 @@ DLList:: SortedInsert(void *item, int sortKey) {
 		element->next = first;
 		first->prev = element;
 		first = element;
+	}
+	else if (element->key >= last->key) {
+		//插入的元素极大
+		last->next = element;
+		element->prev = last;
+		last = element;
+		return;
 	}
 	else {//否则设个指针p，不停地将element的key与指针后一个项的key比，有空隙则插入
 		DLLElement *p = first;

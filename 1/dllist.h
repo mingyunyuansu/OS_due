@@ -15,14 +15,15 @@ class DLList {
 
 	void Prepend(void *item);
 	void Append(void *item);
-	void Remove(int *keyPtr);
+	void *Remove(int *keyPtr);
 
 	bool IsEmpty();
 
 	void SortedInsert(void *item, int sortKey);
 	void *SortedRemove(int sortKey);
 
-	private:
 	DLLElement *first;
 	DLLElement *last;
 };
+void generateN(int, DLList *);
+void removeN(int, DLList*);
