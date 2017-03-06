@@ -6,7 +6,7 @@
 void generateN(int N, DLList * list) {
     for (int i = 0; i < N; ++i) {
         int num = rand();
-        list->SortedInsert(&num, num);
+        list->SortedInsert(&num, num);//item就是随机生成的key
     }
     /*测试用，无视
     int m = 3, n = 5, q = 4, cnt = 0;
