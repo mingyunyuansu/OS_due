@@ -8,7 +8,8 @@ void generateN(int N, DLList * list) {
         int num = rand();
         list->SortedInsert(&num, num);
     }
-    /*int m = 3, n = 5, q = 4, cnt = 0;
+    /*测试用，无视
+    int m = 3, n = 5, q = 4, cnt = 0;
     list->SortedInsert(&m, m);
     list->SortedInsert(&n, n);
     list->SortedInsert(&q, q);
@@ -24,10 +25,9 @@ void removeN(int N, DLList * list) {
     int t;
     for (int i = 0; i < N; ++i) {
         if (list->IsEmpty()){
-            printf("!!!!");
             break;
         }
         list->Remove(&t);
-        printf("key: %d\n", t);
+        printf("item is int: %d, key: %d\n",t t);
     }
 }
