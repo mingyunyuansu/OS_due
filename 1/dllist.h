@@ -22,6 +22,7 @@ class DLList {
 	void SortedInsert(void *item, int sortKey);
 	void *SortedRemove(int sortKey);
 
+	private:
 	DLLElement *first;
 	DLLElement *last;
 };

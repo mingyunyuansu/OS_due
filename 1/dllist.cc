@@ -1,5 +1,5 @@
 #include "dllist.h"
-const int NULL = 0;
+#include <stdlib.h>
 
 DLLElement:: DLLElement(void *itemPtr, int sortKey){
 	key = sortKey;
@@ -85,13 +85,7 @@ DLList:: SortedInsert(void *item, int sortKey) {
 		first->prev = element;
 		first = element;
 	}
-	else if (element->key >= last->key) {
-		//插入的元素极大
-		last->next = element;
-		element->prev = last;
-		last = element;
-		return;
-	}
+	
 	else {//否则设个指针p，不停地将element的key与指针后一个项的key比，有空隙则插入
 		DLLElement *p = first;
 		while (p->next != NULL) {
@@ -102,11 +96,12 @@ DLList:: SortedInsert(void *item, int sortKey) {
 				element->next->prev = element;
 				return;
 			}
-			//如果能运行到这里，说明新的element键值最大，应插入到最后
-			p->next = element;
-			element->prev = p;
-			last = element;
+			p = p->next;
 		}
+		//如果能运行到这里，说明新的element键值最大，应插入到最后
+		p->next = element;
+		element->prev = p;
+		last = element;
 	}
 }
 

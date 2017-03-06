@@ -4,11 +4,11 @@
 
 
 void generateN(int N, DLList * list) {
-    /*for (int i = 0; i < N; ++i) {
+    for (int i = 0; i < N; ++i) {
         int num = rand();
         list->SortedInsert(&num, num);
-    }*/
-    int m = 3, n = 4, q = 5, cnt = 0;
+    }
+    /*int m = 3, n = 5, q = 4, cnt = 0;
     list->SortedInsert(&m, m);
     list->SortedInsert(&n, n);
     list->SortedInsert(&q, q);
@@ -17,7 +17,7 @@ void generateN(int N, DLList * list) {
         printf("key of p: %d\n", p->key);
         p = p->next;
         cnt++;
-    }
+    }*/
 }
 
 void removeN(int N, DLList * list) {
