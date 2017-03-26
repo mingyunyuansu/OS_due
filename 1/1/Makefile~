@@ -1,5 +1,0 @@
-test: main.cc dllist.cc dllist.h dllist-driver.cc
-	g++ -o test main.cc dllist.cc dllist-driver.cc
-
-clean:
-	rm test
