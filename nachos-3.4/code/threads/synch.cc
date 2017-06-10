@@ -96,62 +96,17 @@ Semaphore::V()
     value++;
     (void) interrupt->SetLevel(oldLevel);
 }
-//
+
 // Dummy functions -- so we can compile our later assignments 
 // Note -- without a correct implementation of Condition::Wait(), 
 // the test case in the network assignment won't work!
-Lock::Lock(char* debugName) {
-	name = debugName;
-	sem = new Semaphore(debugName, 1);//只有一把锁
-}
-Lock::~Lock() {
-	delete sem;	
-}
+Lock::Lock(char* debugName) {}
+Lock::~Lock() {}
+void Lock::Acquire() {}
+void Lock::Release() {}
 
-bool Lock::isHeldByCurrentThread() {
-	return (lockOwner == currentThread);
-}
-
-void Lock::Acquire() {
-	sem->P();
-	lockOwner = currentThread;
-}
-
-void Lock::Release() {
-	ASSERT(isHeldByCurrentThread());
-	lockOwner = NULL;
-	sem->V();
-}
-
-Condition::Condition(char* debugName) {
-	name = debugName;
-	sem = new Semaphore(debugName, 0);
-	count = 0;
-}
-Condition::~Condition() {
-	delete sem;
-}
-void Condition::Wait(Lock* conditionLock) { 	
-	ASSERT(conditionLock->isHeldByCurrentThread());
-	conditionLock->Release();
-	count++;
-	sem->P();
-	conditionLock->Acquire();	
-}
-
-void Condition::Signal(Lock* conditionLock) {
-	ASSERT(conditionLock->isHeldByCurrentThread());
-	if (count > 0) {
-		count--;
-		sem->V();
-	}
-}
-
-void Condition::Broadcast(Lock* conditionLock) { 
-	ASSERT(conditionLock->isHeldByCurrentThread());
-	while(count) {
-		sem->V();
-		count--;
-	}
-}
-
+Condition::Condition(char* debugName) { }
+Condition::~Condition() { }
+void Condition::Wait(Lock* conditionLock) { ASSERT(FALSE); }
+void Condition::Signal(Lock* conditionLock) { }
+void Condition::Broadcast(Lock* conditionLock) { }
