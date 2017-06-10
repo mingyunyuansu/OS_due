@@ -55,7 +55,7 @@
 #include "hello.h"
 #ifdef THREADS
 extern int testnum;
-int err_type;//一个类型参数，根据参数不同，展示不同错误类型
+int err_type = 0;//一个类型参数，根据参数不同，展示不同错误类型，默认0是不手动产生错误的意思
 int T, N;//线程数和要插入DLList的item数
 #endif
 
@@ -115,7 +115,6 @@ main(int argc, char **argv)
         break;
       }
     }
-	hello();
     ThreadTest();
 #endif
 
